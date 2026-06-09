@@ -1,3 +1,4 @@
+¡Tienes razón! Aquí está el código completo, cópialo todo:
 html<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,38 +8,49 @@ html<!DOCTYPE html>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --verde: #2e7d32;
-      --verde-claro: #43a047;
-      --amarillo: #f9a825;
-      --blanco: #ffffff;
-      --gris: #f5f5f5;
-      --texto: #1a1a1a;
-    }
-    body { font-family: 'Nunito', sans-serif; background-color: var(--gris); color: var(--texto); }
+    :root { --verde: #2e7d32; --verde-claro: #43a047; --amarillo: #f9a825; --gris: #f5f5f5; --texto: #1a1a1a; }
+    body { font-family: 'Nunito', sans-serif; background-color: var(--gris); color: var(--texto); padding-bottom: 120px; }
     header { background: linear-gradient(135deg, var(--verde), var(--verde-claro)); color: white; text-align: center; padding: 30px 20px 20px; }
     header .emoji-tienda { font-size: 60px; display: block; margin-bottom: 8px; }
-    header h1 { font-family: 'Fredoka One', cursive; font-size: 2.4rem; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    header h1 { font-family: 'Fredoka One', cursive; font-size: 2.4rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
     header p { font-size: 1rem; margin-top: 6px; opacity: 0.9; }
     .badge { display: inline-block; background-color: var(--amarillo); color: #333; font-weight: 700; font-size: 0.85rem; padding: 5px 14px; border-radius: 20px; margin-top: 12px; }
     .section-title { text-align: center; font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--verde); margin: 30px 0 16px; }
     .productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; padding: 0 20px 20px; max-width: 700px; margin: 0 auto; }
-    .producto { background: white; border-radius: 16px; padding: 18px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+    .producto { background: white; border-radius: 16px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
     .producto:hover { transform: translateY(-4px); }
     .producto .icono { font-size: 2.4rem; display: block; margin-bottom: 8px; }
     .producto .nombre { font-weight: 700; font-size: 0.95rem; color: #333; margin-bottom: 4px; }
     .producto .detalle { font-size: 0.78rem; color: #888; margin-bottom: 6px; }
-    .producto .precio { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--verde); }
-    .contacto { text-align: center; padding: 20px; max-width: 500px; margin: 0 auto 30px; }
-    .contacto h2 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--verde); margin-bottom: 8px; }
-    .contacto p { font-size: 0.95rem; color: #555; margin-bottom: 16px; }
-    .btn-whatsapp { display: block; background-color: #25D366; color: white; text-decoration: none; font-weight: 700; font-size: 1rem; padding: 14px 20px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(37,211,102,0.3); transition: background 0.2s, transform 0.2s; }
-    .btn-whatsapp:hover { background-color: #1ebe5d; transform: translateY(-2px); }
-    .btn-whatsapp span { font-size: 1.3rem; margin-right: 8px; }
+    .producto .precio { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--verde); margin-bottom: 10px; }
+    .cantidad-control { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-cantidad { background: var(--verde); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; cursor: pointer; font-weight: 700; line-height: 1; }
+    .btn-cantidad:hover { background: var(--verde-claro); }
+    .cantidad-num { font-family: 'Fredoka One', cursive; font-size: 1.1rem; min-width: 20px; text-align: center; }
+    .carrito-flotante { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); padding: 14px 20px; z-index: 100; display: none; }
+    .carrito-flotante.visible { display: block; }
+    .carrito-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .carrito-info .items { font-size: 0.9rem; color: #555; }
+    .carrito-info .total { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--verde); }
+    .btn-pedir { display: block; width: 100%; background-color: #25D366; color: white; border: none; font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 14px; border-radius: 12px; cursor: pointer; }
+    .btn-pedir:hover { background-color: #1ebe5d; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+    .modal-overlay.visible { display: flex; }
+    .modal { background: white; border-radius: 20px; padding: 24px; max-width: 380px; width: 90%; max-height: 80vh; overflow-y: auto; }
+    .modal h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: var(--verde); margin-bottom: 16px; text-align: center; }
+    .modal-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+    .modal-total { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--verde); text-align: right; margin-top: 12px; }
+    .modal-nombre { margin: 16px 0 8px; font-weight: 700; font-size: 0.95rem; }
+    .modal-nombre input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: 'Nunito', sans-serif; margin-top: 6px; }
+    .modal-nombre input:focus { outline: none; border-color: var(--verde); }
+    .modal-botones { display: flex; gap: 10px; margin-top: 16px; }
+    .btn-cancelar { flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 10px; background: white; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .btn-enviar { flex: 2; padding: 12px; border: none; border-radius: 10px; background: #25D366; color: white; cursor: pointer; font-family: 'Fredoka One', cursive; font-size: 1rem; }
     footer { background: var(--verde); color: white; text-align: center; padding: 16px; font-size: 0.85rem; }
   </style>
 </head>
 <body>
+
   <header>
     <span class="emoji-tienda">🏪</span>
     <h1>Minimarket La Loma</h1>
@@ -49,23 +61,120 @@ html<!DOCTYPE html>
   <h2 class="section-title">🛒 Nuestros Productos</h2>
 
   <div class="productos">
-    <div class="producto"><span class="icono">🌾</span><div class="nombre">Arroz</div><div class="detalle">Por libra</div><div class="precio">$2.200</div></div>
-    <div class="producto"><span class="icono">🍬</span><div class="nombre">Panela</div><div class="detalle">Unidad</div><div class="precio">$5.000</div></div>
-    <div class="producto"><span class="icono">🥚</span><div class="nombre">Huevos</div><div class="detalle">La canasta</div><div class="precio">$17.000</div></div>
-    <div class="producto"><span class="icono">🫙</span><div class="nombre">Aceite</div><div class="detalle">Por 900ml</div><div class="precio">$7.400</div></div>
-    <div class="producto"><span class="icono">🍚</span><div class="nombre">Azúcar</div><div class="detalle">Por kilo</div><div class="precio">$4.300</div></div>
-    <div class="producto"><span class="icono">🧂</span><div class="nombre">Sal</div><div class="detalle">Por kilo</div><div class="precio">$3.200</div></div>
-    <div class="producto"><span class="icono">🥤</span><div class="nombre">Gaseosa Pool</div><div class="detalle">Personal</div><div class="precio">$1.400</div></div>
-    <div class="producto"><span class="icono">🍾</span><div class="nombre">Gaseosa</div><div class="detalle">Litro y cuarto</div><div class="precio">$5.800</div></div>
-  </div>
-
-  <div class="contacto">
-    <h2>📲 ¡Haz tu pedido!</h2>
-    <p>Escríbenos por WhatsApp y te atendemos enseguida</p>
-    <a class="btn-whatsapp" href="https://wa.me/573502140200?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Minimarket%20La%20Loma%20%F0%9F%9B%92" target="_blank"><span>📱</span> WhatsApp: 350 214 0200</a>
-    <a class="btn-whatsapp" href="https://wa.me/573194331506?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Minimarket%20La%20Loma%20%F0%9F%9B%92" target="_blank"><span>📱</span> WhatsApp: 319 433 1506</a>
+    <div class="producto" data-nombre="Arroz" data-precio="2200">
+      <span class="icono">🌾</span><div class="nombre">Arroz</div><div class="detalle">Por libra</div><div class="precio">$2.200</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Panela" data-precio="5000">
+      <span class="icono">🍬</span><div class="nombre">Panela</div><div class="detalle">Unidad</div><div class="precio">$5.000</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Huevos" data-precio="17000">
+      <span class="icono">🥚</span><div class="nombre">Huevos</div><div class="detalle">La canasta</div><div class="precio">$17.000</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Aceite 900ml" data-precio="7400">
+      <span class="icono">🫙</span><div class="nombre">Aceite</div><div class="detalle">Por 900ml</div><div class="precio">$7.400</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Azúcar" data-precio="4300">
+      <span class="icono">🍚</span><div class="nombre">Azúcar</div><div class="detalle">Por kilo</div><div class="precio">$4.300</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Sal" data-precio="3200">
+      <span class="icono">🧂</span><div class="nombre">Sal</div><div class="detalle">Por kilo</div><div class="precio">$3.200</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Gaseosa Pool Personal" data-precio="1400">
+      <span class="icono">🥤</span><div class="nombre">Gaseosa Pool</div><div class="detalle">Personal</div><div class="precio">$1.400</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
+    <div class="producto" data-nombre="Gaseosa litro y cuarto" data-precio="5800">
+      <span class="icono">🍾</span><div class="nombre">Gaseosa</div><div class="detalle">Litro y cuarto</div><div class="precio">$5.800</div>
+      <div class="cantidad-control"><button class="btn-cantidad" onclick="cambiarCantidad(this,-1)">−</button><span class="cantidad-num">0</span><button class="btn-cantidad" onclick="cambiarCantidad(this,1)">+</button></div>
+    </div>
   </div>
 
   <footer>© 2026 Minimarket La Loma · Hecho con ❤️ para nuestra comunidad</footer>
+
+  <div class="carrito-flotante" id="carritoFlotante">
+    <div class="carrito-info">
+      <span class="items" id="carritoItems">0 productos</span>
+      <span class="total" id="carritoTotal">$0</span>
+    </div>
+    <button class="btn-pedir" onclick="abrirModal()">📲 Enviar pedido por WhatsApp</button>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3>🛒 Tu pedido</h3>
+      <div id="modalItems"></div>
+      <div class="modal-total" id="modalTotal"></div>
+      <div class="modal-nombre">
+        <label>Tu nombre:</label>
+        <input type="text" id="nombreCliente" placeholder="Escribe tu nombre...">
+      </div>
+      <div class="modal-botones">
+        <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+        <button class="btn-enviar" onclick="enviarWhatsApp()">📱 Enviar pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let carrito = {};
+    function cambiarCantidad(btn, delta) {
+      const control = btn.parentElement;
+      const numEl = control.querySelector('.cantidad-num');
+      const producto = btn.closest('.producto');
+      const nombre = producto.dataset.nombre;
+      const precio = parseInt(producto.dataset.precio);
+      let cantidad = parseInt(numEl.textContent) + delta;
+      if (cantidad < 0) cantidad = 0;
+      numEl.textContent = cantidad;
+      if (cantidad === 0) { delete carrito[nombre]; } else { carrito[nombre] = { cantidad, precio }; }
+      actualizarCarrito();
+    }
+    function actualizarCarrito() {
+      const keys = Object.keys(carrito);
+      const totalItems = keys.reduce((s, k) => s + carrito[k].cantidad, 0);
+      const totalPrecio = keys.reduce((s, k) => s + carrito[k].cantidad * carrito[k].precio, 0);
+      const flotante = document.getElementById('carritoFlotante');
+      if (totalItems > 0) {
+        flotante.classList.add('visible');
+        document.getElementById('carritoItems').textContent = totalItems + (totalItems === 1 ? ' producto' : ' productos');
+        document.getElementById('carritoTotal').textContent = '$' + totalPrecio.toLocaleString('es-CO');
+      } else { flotante.classList.remove('visible'); }
+    }
+    function abrirModal() {
+      const keys = Object.keys(carrito);
+      let html = ''; let total = 0;
+      keys.forEach(nombre => {
+        const { cantidad, precio } = carrito[nombre];
+        const subtotal = cantidad * precio; total += subtotal;
+        html += '<div class="modal-item"><span>' + cantidad + 'x ' + nombre + '</span><span>$' + subtotal.toLocaleString('es-CO') + '</span></div>';
+      });
+      document.getElementById('modalItems').innerHTML = html;
+      document.getElementById('modalTotal').textContent = 'Total: $' + total.toLocaleString('es-CO');
+      document.getElementById('modalOverlay').classList.add('visible');
+    }
+    function cerrarModal() { document.getElementById('modalOverlay').classList.remove('visible'); }
+    function enviarWhatsApp() {
+      const nombre = document.getElementById('nombreCliente').value.trim() || 'Cliente';
+      const keys = Object.keys(carrito);
+      let mensaje = 'Hola! Soy *' + nombre + '* y quiero hacer un pedido 🛒\n\n';
+      let total = 0;
+      keys.forEach(n => {
+        const { cantidad, precio } = carrito[n];
+        const subtotal = cantidad * precio; total += subtotal;
+        mensaje += '• ' + cantidad + 'x ' + n + ' = $' + subtotal.toLocaleString('es-CO') + '\n';
+      });
+      mensaje += '\n*Total: $' + total.toLocaleString('es-CO') + '*';
+      window.open('https://wa.me/573502140200?text=' + encodeURIComponent(mensaje), '_blank');
+      cerrarModal();
+    }
+  </script>
 </body>
 </html>
+
+Ahora ve a GitHub, abre el index.html, haz clic en el lápiz ✏️, borra todo y pega este código. Luego Commit changes 😊Sonnet 4.6 Bajo
