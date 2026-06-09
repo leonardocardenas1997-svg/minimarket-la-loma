@@ -1,45 +1,71 @@
-HTML
-<!DOCTYPE html>
+html<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mi Primera Página Web</title>
-    <style>
-        /* Aquí va el diseño (CSS) */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #3333aa;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimarket La Loma</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --verde: #2e7d32;
+      --verde-claro: #43a047;
+      --amarillo: #f9a825;
+      --blanco: #ffffff;
+      --gris: #f5f5f5;
+      --texto: #1a1a1a;
+    }
+    body { font-family: 'Nunito', sans-serif; background-color: var(--gris); color: var(--texto); }
+    header { background: linear-gradient(135deg, var(--verde), var(--verde-claro)); color: white; text-align: center; padding: 30px 20px 20px; }
+    header .emoji-tienda { font-size: 60px; display: block; margin-bottom: 8px; }
+    header h1 { font-family: 'Fredoka One', cursive; font-size: 2.4rem; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    header p { font-size: 1rem; margin-top: 6px; opacity: 0.9; }
+    .badge { display: inline-block; background-color: var(--amarillo); color: #333; font-weight: 700; font-size: 0.85rem; padding: 5px 14px; border-radius: 20px; margin-top: 12px; }
+    .section-title { text-align: center; font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--verde); margin: 30px 0 16px; }
+    .productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; padding: 0 20px 20px; max-width: 700px; margin: 0 auto; }
+    .producto { background: white; border-radius: 16px; padding: 18px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+    .producto:hover { transform: translateY(-4px); }
+    .producto .icono { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+    .producto .nombre { font-weight: 700; font-size: 0.95rem; color: #333; margin-bottom: 4px; }
+    .producto .detalle { font-size: 0.78rem; color: #888; margin-bottom: 6px; }
+    .producto .precio { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--verde); }
+    .contacto { text-align: center; padding: 20px; max-width: 500px; margin: 0 auto 30px; }
+    .contacto h2 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--verde); margin-bottom: 8px; }
+    .contacto p { font-size: 0.95rem; color: #555; margin-bottom: 16px; }
+    .btn-whatsapp { display: block; background-color: #25D366; color: white; text-decoration: none; font-weight: 700; font-size: 1rem; padding: 14px 20px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(37,211,102,0.3); transition: background 0.2s, transform 0.2s; }
+    .btn-whatsapp:hover { background-color: #1ebe5d; transform: translateY(-2px); }
+    .btn-whatsapp span { font-size: 1.3rem; margin-right: 8px; }
+    footer { background: var(--verde); color: white; text-align: center; padding: 16px; font-size: 0.85rem; }
+  </style>
 </head>
 <body>
+  <header>
+    <span class="emoji-tienda">🏪</span>
+    <h1>Minimarket La Loma</h1>
+    <p>Todo lo que necesitas, cerca de ti</p>
+    <span class="badge">📦 Canasta familiar completa</span>
+  </header>
 
-    <h1>¡Hola Mundo! Mi primera página web</h1>
-    <p>Estoy aprendiendo a programar paso a paso.</p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" alt="Mi primera imagen" width="300">
+  <h2 class="section-title">🛒 Nuestros Productos</h2>
 
-    
-    <button onclick="saludar()">¡Haz clic aquí!</button>
+  <div class="productos">
+    <div class="producto"><span class="icono">🌾</span><div class="nombre">Arroz</div><div class="detalle">Por libra</div><div class="precio">$2.200</div></div>
+    <div class="producto"><span class="icono">🍬</span><div class="nombre">Panela</div><div class="detalle">Unidad</div><div class="precio">$5.000</div></div>
+    <div class="producto"><span class="icono">🥚</span><div class="nombre">Huevos</div><div class="detalle">La canasta</div><div class="precio">$17.000</div></div>
+    <div class="producto"><span class="icono">🫙</span><div class="nombre">Aceite</div><div class="detalle">Por 900ml</div><div class="precio">$7.400</div></div>
+    <div class="producto"><span class="icono">🍚</span><div class="nombre">Azúcar</div><div class="detalle">Por kilo</div><div class="precio">$4.300</div></div>
+    <div class="producto"><span class="icono">🧂</span><div class="nombre">Sal</div><div class="detalle">Por kilo</div><div class="precio">$3.200</div></div>
+    <div class="producto"><span class="icono">🥤</span><div class="nombre">Gaseosa Pool</div><div class="detalle">Personal</div><div class="precio">$1.400</div></div>
+    <div class="producto"><span class="icono">🍾</span><div class="nombre">Gaseosa</div><div class="detalle">Litro y cuarto</div><div class="precio">$5.800</div></div>
+  </div>
 
-    <script>
-        /* Aquí va la interactividad (JavaScript) */
-        function saludar() {
-            alert("¡Felicidades! Acabas de ejecutar tu primer código en JavaScript.");
-        }
-    </script>
+  <div class="contacto">
+    <h2>📲 ¡Haz tu pedido!</h2>
+    <p>Escríbenos por WhatsApp y te atendemos enseguida</p>
+    <a class="btn-whatsapp" href="https://wa.me/573502140200?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Minimarket%20La%20Loma%20%F0%9F%9B%92" target="_blank"><span>📱</span> WhatsApp: 350 214 0200</a>
+    <a class="btn-whatsapp" href="https://wa.me/573194331506?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Minimarket%20La%20Loma%20%F0%9F%9B%92" target="_blank"><span>📱</span> WhatsApp: 319 433 1506</a>
+  </div>
 
+  <footer>© 2026 Minimarket La Loma · Hecho con ❤️ para nuestra comunidad</footer>
 </body>
 </html>
